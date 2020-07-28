@@ -9,7 +9,19 @@
 <body>
     <div id='app'>
 
-        
+        <div id="fromEuros">
+            <form>
+                <h2>Currency Calculator:</h2>
+                <input type="number" v-model.number="euros"/>
+                <h3>to</h3>
+                <select v-model="selectedCurrency">
+                    <option v-for="(rate, currency) in exchangeRates.rates" :value="rate">{{currency}}</option>
+                </select>
+                <button v-on:click.prevent="exchangeToForeign">Exchange?</button>
+            </form>
+            <h3>{{exchangedRate}}</h3>
+        </div>
+
         <div v-if="exchangeRates">
             <h2>Current Exchange Rates as of {{exchangeRates.date}} in Relation to {{exchangeRates.base}}:</h2>
                 <ul v-for="(rate, currency) in exchangeRates.rates">
