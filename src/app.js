@@ -6,16 +6,14 @@ document.addEventListener('DOMContentLoaded', ()=> {
         data: {
             exchangeRates: null,
             selectedCurrency: null,
-            euros: 1,
+            euros: 0,
             exchangedRate: 0
         },
         mounted() {
             this.fetchData();
         },
         computed: {
-            // setExchangedRate: function() {
-            //     this.exchangedRate === this.selectedCurrency
-            // }
+            
         },
         methods: {
             fetchData() {
@@ -24,10 +22,11 @@ document.addEventListener('DOMContentLoaded', ()=> {
                 .then(data => this.exchangeRates = data);
             },
             exchangeToForeign() {
-                console.log(this.selectedCurrency);
                 this.exchangedRate = (this.euros * this.selectedCurrency);
-                return this.exchangedRate
             },
+            exchangeToEuros() {
+                this.euros = (this.exchangedRate / this.selectedCurrency);
+            }
         }
     })
 })

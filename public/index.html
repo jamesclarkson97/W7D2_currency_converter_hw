@@ -11,7 +11,7 @@
 
         <div id="fromEuros">
             <form>
-                <h2>Currency Calculator:</h2>
+                <h2>Euro Currency Calculator:</h2>
                 <input type="number" v-model.number="euros"/>
                 <h3>to</h3>
                 <select v-model="selectedCurrency">
@@ -20,6 +20,19 @@
                 <button v-on:click.prevent="exchangeToForeign">Exchange?</button>
             </form>
             <h3>{{exchangedRate}}</h3>
+        </div>
+
+        <div id="toEuros">
+            <form>
+                <h2>Foreign Currency Calculator:</h2>
+                <input type="number" v-model.number="exchangedRate"/>
+                <h3>from</h3>
+                <select v-model="selectedCurrency">
+                    <option v-for="(rate, currency) in exchangeRates.rates" :value="rate">{{currency}}</option>
+                </select>
+                <button v-on:click.prevent="exchangeToEuros">Exchange?</button>
+            </form>
+            <h3>{{euros}}</h3>
         </div>
 
         <div v-if="exchangeRates">
